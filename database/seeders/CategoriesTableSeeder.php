@@ -16,6 +16,7 @@ class CategoriesTableSeeder extends Seeder
 
     public function run()
     {
+        
         $parentCategories = [
             [
                 'name' => 'Clothing and Accessories',

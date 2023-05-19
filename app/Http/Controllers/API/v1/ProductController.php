@@ -10,7 +10,9 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $data = Product::all();
+        $data = Product::with(['category' => function($query) {
+            $query->select('id','name');
+        }])->get();
 
         return response()->json([
             'message' => 'Data retrieved',
