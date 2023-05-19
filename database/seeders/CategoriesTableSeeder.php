@@ -13,14 +13,41 @@ class CategoriesTableSeeder extends Seeder
      *
      * @return void
      */
+
     public function run()
     {
         $parentCategories = [
             [
-                'name' => 'Electronics',
-                'slug' => 'electronics',
+                'name' => 'Clothing and Accessories',
                 'icon' => 'fas fa-laptop',
-            ]
+            ],
+            [
+                'name' => 'Home and Kitchen'
+            ],
+            [
+                'name' => 'Health and Wellness'
+            ],
+            [
+                'name' => 'Personal Care and Beauty'
+            ],
+            [
+                'name' => 'Electronics and Gadgets'
+            ],
+            [
+                'name' => 'Sustainable Food and Beverages'
+            ],
+            [
+                'name' => 'Eco-friendly Cleaning Supplies'
+            ],
+            [
+                'name' => 'Outdoor and Recreation'
+            ],
+            [
+                'name' => 'Sustainable Baby and Kids Products'
+            ],
+            [
+                'name' => 'Green Living and Lifestyle'
+            ],
         ];
 
         foreach ($parentCategories as $category) {
