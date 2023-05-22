@@ -17,4 +17,14 @@ class CategoryController extends Controller
             'data' => $data
         ]);
     }
+
+    public function show(Request $request, $id)
+    {
+        $data = Category::with('products')->where('id',$id)->get();
+
+        return response()->json([
+            'message' => 'Data Retrieved',
+            'data' => $data
+        ]);
+    }
 }

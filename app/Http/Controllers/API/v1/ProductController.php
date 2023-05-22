@@ -19,4 +19,14 @@ class ProductController extends Controller
             'data' => $data
         ]);
     }
+
+    public function show(Request $request, $id)
+    {
+        $data = Product::where('id',$id)->with('category:id,name')->get();
+
+        return response()->json([
+            'message' => 'Data retrieved',
+            'data' => $data
+        ]);
+    }
 }
