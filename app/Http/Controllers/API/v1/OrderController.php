@@ -21,11 +21,38 @@ class OrderController extends Controller
 
     public function getASingleOrder(Request $request, $id)
     {
-        $order = Order::where('id',$id)->first();
+        $data = [];
+        
+        $order = Order::where('id',$id)->with('details.product')->first();
+        $data['id'] = $order->id;
+        $data['customer_name'] = $order->name;
+        $data['customer_phone'] = $order->customer_phone;
+        $data['address'] = $order->address;
+        $data['order_status'] = $order->order_status;
+        $data['payment_type'] = $order->payment_type;
+        $data['vat'] = $order->vat;
+        $data['subtotal'] = $order->subtotal;
+        $data['total'] = $order->total;
+        $data['created_at'] = $order->total;
+        $data['updated_at'] = $order->total;
+
+        $details = [];
+
+        foreach ($order['details'] as $item) {
+            $detail = [];
+            $detail['id'] = $item->id;
+            $detail['quantity'] = $item->quantity;
+            $detail['unit_price'] = $item->unit_price;
+            $detail['subtotal'] = $item->subtotal;
+            $detail['product_name'] = $item->product->name;
+            array_push($details, $detail);
+        }
+
+        $data['details'] = $details;
 
         return response()->json([
             'message' => 'Data Retrieved!',
-            'data' => $order
+            'data' => $data
         ]);
     }
 
