@@ -6,12 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderDetails;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
     public function index(Request $request)
     {
-        $orders = Order::all();
+        $user = Auth::user();
+        $orders = $user->orders;
 
         return response()->json([
             'message' => 'Data Recieved Successfully',
@@ -35,6 +37,7 @@ class OrderController extends Controller
         $data['total'] = $order->total;
         $data['created_at'] = $order->total;
         $data['updated_at'] = $order->total;
+        $data['user'] = $order->user;
 
         $details = [];
 
@@ -58,8 +61,10 @@ class OrderController extends Controller
 
     public function placeOrder(Request $request)
     {
+        $user = Auth::user();
         $data = [];
         $details = [];
+        $data['user_id'] = $user->id;
         $data['customer_name'] = $request->firstName . " " . $request->lastName;
         $data['customer_phone'] = $request->phone;
         $data['address'] = $request->address;

@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->string('customer_name');
             $table->string('customer_phone');
             $table->string('address');
@@ -23,6 +24,7 @@ return new class extends Migration
             $table->double('vat')->nullable();
             $table->double('subtotal')->nullable();
             $table->double('total')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

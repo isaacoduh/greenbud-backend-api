@@ -32,6 +32,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/me', [UserController::class, 'me']);
     Route::post('/logout', [UserController::class, 'logout']);
     Route::post('/refresh', [UserController::class, 'refresh']);
+
+    Route::post('/orders',[OrderController::class,'placeOrder']);
+    Route::get('/orders',[OrderController::class,'index']);
+    Route::get('/orders/{id}',[OrderController::class,'getASingleOrder']);
+
 });
 
 
@@ -44,6 +49,5 @@ Route::get('/products', [ProductController::class,'index']);
 Route::get('/products/{id}', [ProductController::class, 'show']);
 
 
-Route::post('/orders',[OrderController::class,'placeOrder']);
-Route::get('/orders',[OrderController::class,'index']);
-Route::get('/orders/{id}',[OrderController::class,'getASingleOrder']);
+
+
